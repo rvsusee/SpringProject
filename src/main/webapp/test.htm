@@ -1,0 +1,65 @@
+<html>
+	<head>
+		 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"> </script>
+		 
+	<script type="text/javascript" language="javascript">
+
+		 $(document).ready(function() {
+			$("#submit").click(function () {
+				var op = "name=" + $("#ename").val() + "&age=" + $("#age").val() + "&salary=" + $("#salary").val() + "&address=" + $("#address").val();	
+				var report="";
+				$.ajax({
+						type: "GET",
+						url: "http://localhost:8080/GETBatch/api/testAPI?" + op,
+						
+						success: function(data) {
+							alert(JSON.stringify(data));
+							for(var i in data) {
+								report = report + "<tr><td>" + data[i].age + "</td><td>" + data[i].STATUS + "</td></tr>";
+								//alert(JSON.stringify(data[i].STATUS));
+							}
+							$("#report").html(report);
+						}
+					});
+					
+			});
+		 
+			$("#reset").click(function () {
+				$("#ename").val('');
+				$("#age").val('');
+				$("#saalry").val('');
+				$("#address").val('');
+			});
+
+		 });
+
+	function myfunction() {
+		alert('Hi');
+	}
+	</script>
+	</head>
+	<body>
+		<table id="myTable" border="1">
+			<tr>
+				<td>Employee Name</td>
+				<td>Address</td>
+				<td>Age</td>
+				<td>Salary</td>
+				<td>Dept Id</td>
+			</tr>
+			<tr>
+				<td><input type="text" value="Abc" id="ename"> </input>				</td>
+				<td><input type="text" value="Chennai" readonly="true" id="address"> </input></td>
+				<td><input type="text" id="age" value="20"> </input></td>
+				<td><input type="text" id="salary" value="20000"> </input></td>
+				<td><input type="text" id="deptId" value="10"> </input></td>
+			</tr>
+			</table>
+			<br><br>
+			<input type="reset" id="reset" label="reset" value="reset" />
+			<input type="button" id="submit" label="Submit" value="Submit" />
+			<BR><BR>
+			<table id="report" bolder="1">
+			</table>
+	</body>
+</html>
