@@ -19,12 +19,12 @@ public class PropertyFileController {
 
 	@Autowired
 	Environment env;
-	
-	@GetMapping(value="file")
-	public ResponseEntity<?> readFile() throws Exception{
+
+	@GetMapping(value = "file")
+	public ResponseEntity<?> readFile() throws Exception {
 
 		List<String> list = new ArrayList<>();
 		list.add(env.getProperty("a"));
-	return new ResponseEntity<>(list,HttpStatus.OK);
+		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 }
