@@ -23,7 +23,7 @@ public class TestController {
 	
 	
 	@RequestMapping(value = "testapi", method = RequestMethod.GET)
-	public String testAPI(@RequestParam Map<String, String> requestParam) throws Exception {
+	public ResponseEntity<?> testAPI(@RequestParam Map<String, String> requestParam) throws Exception {
 
 		String operation = requestParam.get("operation");
 		
@@ -46,15 +46,17 @@ public class TestController {
 
 //		file.writeFile(requestParam);
 //		return file.readFile();
+
 		
-		String res;
-		res = "<center><table border= '2'><center>";
-		for (String key : requestParam.keySet()) {
-			res += "<tr><td>"+key+"</td><td>"+requestParam.get(key).toString()+"</td></tr>";
-		}
-		res += "</table>";
+//		String res;
+//
+//		res = "<center><table border= '2'><center>";
+//		for (String key : requestParam.keySet()) {
+//			res += "<tr><td>"+key+"</td><td>"+requestParam.get(key).toString()+"</td></tr>";
+//		}
+//		res += "</table>";
 		
-		return res;
+		return new ResponseEntity<> (requestParam, HttpStatus.OK);
 
 	}
 

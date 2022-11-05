@@ -20,9 +20,8 @@ public class User {
 		return "username: "+username+", password: "+password;
 	}
 
-	public boolean checkUserPass(String string, String string2) {
-		
-		return false;
+	public boolean checkUserPass(String useraname, String password) {
+		return this.username.equals(useraname)&&this.password.equals(password) ? true : false;
 	}
 		
 }
