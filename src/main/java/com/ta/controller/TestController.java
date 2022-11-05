@@ -40,6 +40,8 @@ public class TestController {
 			result = calc.mul(v1, v2);
 		} else if ("div".equals(operation)) {
 			result = calc.div(v1, v2);
+			
+			
 		}
 
 		requestParam.put("Result", result+"");		
@@ -56,7 +58,7 @@ public class TestController {
 //		}
 //		res += "</table>";
 		
-		return new ResponseEntity<> (requestParam, HttpStatus.OK);
+		return new ResponseEntity<> (requestParam , HttpStatus.OK);
 
 	}
 

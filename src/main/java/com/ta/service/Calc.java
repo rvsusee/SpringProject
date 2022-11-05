@@ -2,8 +2,6 @@ package com.ta.service;
 
 import org.springframework.stereotype.Service;
 
-
-
 @Service
 public class Calc implements Operations{
 	public int add(int a,int b) {
