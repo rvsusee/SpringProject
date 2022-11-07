@@ -10,11 +10,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/inputs/")
+@RequestMapping("/view/")
 public class HtmlController {
 
-	@RequestMapping(value = "view", method = RequestMethod.GET)
+	@RequestMapping(value = "inputs", method = RequestMethod.GET)				
 	public ResponseEntity<?> display(@RequestParam Map<String, String> input) throws Exception {		
+
+		
+		
+		
+		
 		return new ResponseEntity<>(input,HttpStatus.OK);
 	}
 

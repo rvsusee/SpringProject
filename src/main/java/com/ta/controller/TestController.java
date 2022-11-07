@@ -25,18 +25,16 @@ public class TestController {
 	Operations calc;
 	PropertyFile file;
 
-	@Value("${file.path}")
+	@Value("${filepath}")
 	String path;
 
 	@RequestMapping(value = "testapi1", method = RequestMethod.GET)
-	public ResponseEntity<?> testAPI(@RequestParam Map<String, String> requestParam) throws Exception {
-
-		requestParam.put("Controller", "1");
+	public ResponseEntity<?> testAPI(@RequestParam Map<String, String> inputs) throws Exception {
 
 		try {
-			String operation = requestParam.get("operation");
-			int v1 = Integer.parseInt(requestParam.get("a"));
-			int v2 = Integer.parseInt(requestParam.get("b"));
+			String operation = inputs.get("operation");
+			int v1 = Integer.parseInt(inputs.get("a"));
+			int v2 = Integer.parseInt(inputs.get("b"));
 			int result = 0;
 
 			if ("add".equals(operation)) {
@@ -50,22 +48,27 @@ public class TestController {
 			} else {
 				throw new InputMismatchException("Invalid Operation");
 			}
-			requestParam.put("Result", result + "");
-			requestParam.put("Status", "Success");
+			
+			
+			inputs.put("Result", result + "");
+			inputs.put("Status", "Success");
 		} catch (Exception e) {
-			requestParam.put("Status", "Failure");
-			requestParam.put("Error", e.toString());
+			inputs.put("Status", "Failure");
+			inputs.put("Error", e.toString());
 		}
-		return new ResponseEntity<>(requestParam, HttpStatus.OK);
+		
+		
+		return new ResponseEntity<>(inputs, HttpStatus.OK);
 
 	}
 
+	
 	@RequestMapping(value = "testapi2", method = RequestMethod.GET)
-	public ResponseEntity<?> testAPI2(@RequestParam Map<String, String> requestParam) throws Exception {
+	public ResponseEntity<?> testAPI2() {
 
 		Properties properties = null;
 		try {
-			java.io.FileInputStream file = new FileInputStream(path);
+			FileInputStream file = new FileInputStream(path);
 			properties = new Properties();
 			properties.load(file);
 		} catch (Exception e) {

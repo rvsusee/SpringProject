@@ -1,5 +1,7 @@
 package com.ta.service;
 
+import java.util.Properties;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,7 @@ public class User {
 	
 	@Value("${pass}")
 	private String password;
+	Properties p = new Properties();
 	
 	@Override
 	public String toString() {
