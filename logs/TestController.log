@@ -1,0 +1,4 @@
+08/11/2022 17:11:24:502  INFO - inputs controller started
+08/11/2022 17:11:24:512  INFO - properties Values : {pass=password, name=aaa, age=20, email=abc@gmail.com}
+08/11/2022 17:11:24:513  INFO - Input Values: {pass=password, name=aaa, age=20, email=abc@gmail.com}
+08/11/2022 17:11:24:513 DEBUG - inputs controller ended: {pass=password, name=aaa, age=20, email=abc@gmail.com}
