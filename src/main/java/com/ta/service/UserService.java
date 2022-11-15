@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @PropertySource("classpath:users.properties")
-public class User {
+public class UserService {
 	
 	@Value("${name}")
 	private String username;

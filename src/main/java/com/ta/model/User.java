@@ -1,29 +1,25 @@
 package com.ta.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.springframework.stereotype.Repository;
 
-@Entity
-@Table(name = "SUSEENDHIRAN_MATRIMONY_USERS")
+@Repository
 public class User {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int userID;
 
-	@Column(name = "email")
 	private String email;
 
-	@Column(name = "password")
 	private String password;
 
 	public User(int userID, String email, String password) {
 		super();
 		this.userID = userID;
+		this.email = email;
+		this.password = password;
+	}
+
+	public User(String email, String password) {
+		super();
 		this.email = email;
 		this.password = password;
 	}
