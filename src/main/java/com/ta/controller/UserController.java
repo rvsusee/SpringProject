@@ -5,7 +5,6 @@ import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,8 +19,6 @@ public class UserController {
 
 	@Autowired
 	UserService user;
-	@Autowired
-	JdbcTemplate jdbcTemplate;
 
 	Logger log = LogManager.getLogger("UserController");
 
