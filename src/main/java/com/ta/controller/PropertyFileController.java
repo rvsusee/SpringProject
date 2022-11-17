@@ -9,6 +9,7 @@ import java.util.Scanner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +34,7 @@ public class PropertyFileController {
 	public ResponseEntity<?> readFile() throws Exception {
 
 		List<String> list = new ArrayList<>();
-		list.add(env.getProperty("a"));
+		list.add(env.getProperty("name"));
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 	
@@ -50,6 +51,5 @@ public class PropertyFileController {
 		System.out.println("testAPI Ended");
 		
 		return new ResponseEntity<>(properties, HttpStatus.OK);
-
 	}
 }
