@@ -28,10 +28,16 @@ public class JdbcUserRepository implements UserRepository {
 	}
 
 	@Override
-	public int findByEmail(User user) {
-		String sql = "SELECT * FROM SUSEENDHIRAN_MATRIMONY_USERS WHERE email = ?";
-		int temp = jdbcTemplate.update(sql, new Object[] { user.getEmail()});
-		return jdbcTemplate.update(sql, new Object[] { user.getEmail()});
+	public User findByID(User user) {
+		try {
+			User tutorial = jdbcTemplate.queryForObject("SELECT * FROM SUSEENDHIRAN_MATRIMONY_USERS WHERE email=?",
+					BeanPropertyRowMapper.newInstance(User.class), user.getEmail());
+
+			return tutorial;
+		} catch (Exception e) {
+			System.out.println("Something wrong");
+		}
+		return user;
 	}
 
 	@Override

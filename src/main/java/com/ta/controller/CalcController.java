@@ -18,6 +18,7 @@ import com.ta.service.PropertyFile;
 @RequestMapping("/calc/")
 public class CalcController {
 
+	
 	@Autowired
 	Operations calc;
 	PropertyFile file;

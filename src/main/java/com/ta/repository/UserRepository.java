@@ -14,7 +14,7 @@ public interface UserRepository {
 
 	int updateUser(User user);
 
-	int findByEmail(User user);
+	User findByID(User user);
 
 	int deleteById(int id);
 
