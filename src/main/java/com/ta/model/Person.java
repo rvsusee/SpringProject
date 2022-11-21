@@ -15,6 +15,9 @@ public class Person {
 	private String workLocation;
 	private String education;
 
+	public Person() {
+	}
+
 	public Person(String name, String age, String gender, String mobileNo, String email, String fatherName,
 			String motherName, String homeLocation, String jobType, String salary, String workLocation,
 			String education) {
@@ -104,5 +107,20 @@ public class Person {
 
 	public String getEducation() {
 		return education;
+	}
+	@Override
+	public String toString() {
+		return "\n Full name: "+name
+				+"\n Age: "+age
+				+"\n Gender: "+gender
+				+"\n Mobile Number: "+mobileNo
+				+"\n E-mail:"+email
+				+"\n Father Name: "+fatherName
+				+"\n Mother Name: "+motherName
+				+"\n Home Location: "+homeLocation
+				+"\n Job Type: "+jobType
+				+"\n Salary: "+salary
+				+"\n Work Location: "+workLocation
+				+"\n Education: "+education;
 	}
 }

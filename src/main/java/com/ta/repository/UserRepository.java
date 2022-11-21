@@ -21,5 +21,8 @@ public interface UserRepository {
 
 	List<User> findAll();
 
+	boolean isValidUser(User user,User currUser);
+
+	String getNameByID(int userId);
 	
 }

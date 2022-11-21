@@ -53,4 +53,28 @@ public class JdbcUserRepository implements UserRepository {
 				BeanPropertyRowMapper.newInstance(User.class));
 	}
 
+	@Override
+	public boolean isValidUser(User user,User currUser) {
+		if(user.getEmail().equals(currUser.getEmail())) {
+			if(user.getPassword().equals(currUser.getPassword())) {
+				System.out.println("Login Success");
+				return true;
+			}else {
+				System.out.println("Password Wrong");
+				return false;
+			}
+		}else {
+			System.out.println("Email and Password");
+		}
+		return false;
+	}
+	
+	public String getNameByID(int userId){
+	    String sql = "SELECT name FROM SUSEENDHIRAN_MATRIMONY_USER_DETAILS WHERE userID="+userId;	    
+	    return (String) jdbcTemplate.queryForObject(sql, String.class);
+	
+	}
+	
+
+
 }
