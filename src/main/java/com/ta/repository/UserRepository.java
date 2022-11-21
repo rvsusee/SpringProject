@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ta.model.User;
 
+
 @Configurable
 @Repository
 public interface UserRepository {
@@ -20,4 +21,5 @@ public interface UserRepository {
 
 	List<User> findAll();
 
+	
 }

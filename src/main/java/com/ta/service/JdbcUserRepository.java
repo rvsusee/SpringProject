@@ -1,4 +1,4 @@
-package com.ta.repository;
+package com.ta.service;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import com.ta.model.User;
+import com.ta.repository.UserRepository;
 
 @Service
 public class JdbcUserRepository implements UserRepository {
@@ -30,10 +31,10 @@ public class JdbcUserRepository implements UserRepository {
 	@Override
 	public User findByID(User user) {
 		try {
-			User tutorial = jdbcTemplate.queryForObject("SELECT * FROM SUSEENDHIRAN_MATRIMONY_USERS WHERE email=?",
+			User currUser = jdbcTemplate.queryForObject("SELECT * FROM SUSEENDHIRAN_MATRIMONY_USERS WHERE email=?",
 					BeanPropertyRowMapper.newInstance(User.class), user.getEmail());
-
-			return tutorial;
+			System.out.println("Find User By ID: "+currUser);
+			return currUser;
 		} catch (Exception e) {
 			System.out.println("Something wrong");
 		}

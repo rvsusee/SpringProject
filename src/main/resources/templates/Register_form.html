@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Spring Project</title>
+</head>
+<body>
+<div align="center">
+    <h1>Registration Page</h1>
+    <form action="#" th:action="@{/register}" method="post" th:object="${user}">
+
+        <label>Full name:</label>
+        <input type="text" th:field="*{name}" /><br/>
+
+        <label>Age:</label>
+        <input type="text" th:field="*{name}" /><br/>
+ 
+        <label>Birthday (yyyy-mm-dd):</label>
+        <input type="text" th:field="*{birthday}" /><br/>
+ 
+        <label>Gender:</label>
+        <input type="radio" th:field="*{gender}" value="Male" />Male
+        <input type="radio" th:field="*{gender}" value="Female" />Female<br/>
+
+        <label>Mobile Number:</label>
+        <input type="text" th:field="*{name}" /><br/>
+ 
+        <label>E-mail:</label>
+        <input type="text" th:field="*{email}" /><br/>
+
+        <label>Father name:</label>
+        <input type="text" th:field="*{name}" /><br/>
+ 
+        <label>Mother name:</label>
+        <input type="text" th:field="*{name}" /><br/>
+
+        <label>Job Type:</label>
+        <input type="text" th:field="*{name}" /><br/>
+ 
+        <label>Salary:</label>
+        <input type="text" th:field="*{name}" /><br/>
+ 
+        <label>Work Location:</label>
+        <input type="text" th:field="*{name}" /><br/>
+
+        <label>Education:</label>
+        <input type="text" th:field="*{name}" /><br/>
+
+		<br/>
+        <button type="reset" value="submit">Reset</button>    
+        <button type="submit">Register</button>
+    </form>
+</div>
+</body>
+</html>
