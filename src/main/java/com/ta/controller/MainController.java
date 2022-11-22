@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ta.model.Person;
 import com.ta.model.User;
+import com.ta.repository.PersonRepository;
 import com.ta.repository.UserRepository;
 
 @EnableJpaRepositories
@@ -28,6 +29,9 @@ public class MainController {
 
 	@Autowired
 	UserRepository repo;
+
+	@Autowired
+	PersonRepository personrepo;
 
 	@GetMapping(value = "/users_list")
 	public String getUsersList(Model model) throws Exception {
@@ -62,33 +66,33 @@ public class MainController {
 
 	@GetMapping("/register")
 	public String registerForm(Model model) {
-
-		Person person = new Person();
-		model.addAttribute("person", person);
-
+		model.addAttribute("person", new Person());
 		return "register_form";
 	}
 
 	@PostMapping("/register")
-	public String submitForm(@ModelAttribute("person") Person person) {
-		System.out.println(person);
+	public String submitForm(@ModelAttribute Person person, Model model) {
+		System.out.println("Register"+person);
 		return "register_success";
 	}
 
 	@GetMapping("/login")
 	public String loginForm(Model model) {
-		model.addAttribute("user", new User());
+		model .addAttribute("user", new User());
 		return "login_form";
 	}
 
 	@PostMapping("/login")
-	public String loginForm(@ModelAttribute User user, Model model) {
-		System.out.println("USerrr"+user);
+	public String loginForm(@ModelAttribute User user, Model model){
 		User currUser = repo.findByID(user);
 		if(repo.isValidUser(user,currUser)) {
-			model.addAttribute("userName",repo.getNameByID(currUser.getUserID()));
-		    System.out.println("Current User Name: "+model.getAttribute("userName"));
-			return "home_page";
+			Person currentUserDetails = personrepo.getPerson(currUser.getUserID());
+			model.addAttribute("currentUserDetails",currentUserDetails);
+		    model.addAttribute("personList",personrepo.getAllPersons(currentUserDetails));
+
+		    return "home_page";
+		}else {
+			System.out.println("Login Failed");
 		}
 		return "login_form";
 	}

@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ta.service.UserService;
+import com.ta.service.UserServicePropFile;
 
 @RestController
 @RequestMapping("/users/")
 public class UserController {
 
 	@Autowired
-	UserService user;
+	UserServicePropFile user;
 
 	Logger log = LogManager.getLogger("UserController");
 
