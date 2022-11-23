@@ -3,6 +3,7 @@ package com.ta.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -19,9 +20,30 @@ public class UserService implements UserRepository {
 	JdbcTemplate jdbcTemplate;
 
 	@Override
-	public int addNewUser(User user) {
-		String sql = "INSERT INTO SUSEENDHIRAN_MATRIMONY_USERS(email,password) VALUES (?,?)";
-		return jdbcTemplate.update(sql, new Object[] { user.getEmail(), user.getPassword() });
+	public String addNewUser(User user, Person person) {
+		try {
+			String sqlUser = "INSERT INTO SUSEENDHIRAN_MATRIMONY_USERS(email,password) VALUES (?,?)";
+			jdbcTemplate.update(sqlUser, new Object[] { user.getEmail(), user.getPassword() });
+			int currUserID = findByID(user).getUserID();
+			user.setUserID(currUserID);
+			person.setUserID(currUserID);
+			try {
+				String sqlPerson = "INSERT INTO SUSEENDHIRAN_MATRIMONY_USER_DETAILS(userID,name,age,gender,mobileNo,fatherName,motherName,homeLocation,jobType,salary,workLocation,education) "
+						+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+				jdbcTemplate.update(sqlPerson,
+						new Object[] { person.getUserID(), person.getName(), person.getAge(), person.getGender(),
+								person.getMobileNo(), person.getFatherName(), person.getMotherName(),
+								person.getHomeLocation(), person.getJobType(), person.getSalary(),
+								person.getWorkLocation(), person.getEducation() });
+				return "SUCCESS";
+			} catch (Exception e) {
+				System.out.println(e);
+				return "UAPD";
+			}
+		} catch (DataAccessException e) {
+			System.out.println("Unable to Add");
+			return "UAUD";
+		}
 	}
 
 	@Override
@@ -74,7 +96,7 @@ public class UserService implements UserRepository {
 		String sql = "SELECT name FROM SUSEENDHIRAN_MATRIMONY_USER_DETAILS WHERE userID=" + userId;
 		try {
 			return jdbcTemplate.queryForObject(sql, String.class);
-		}catch(EmptyResultDataAccessException e){
+		} catch (EmptyResultDataAccessException e) {
 			return "User";
 		}
 	}

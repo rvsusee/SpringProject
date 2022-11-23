@@ -46,7 +46,7 @@ public class MainController {
 	public ResponseEntity<?> addNewUser(@RequestParam Map<String, String> inputs) throws Exception {
 		User currUser = new User(inputs.get("email"), inputs.get("password"));
 		try {
-			int temp = repo.addNewUser(currUser);
+//			int temp = repo.addNewUser(currUser);
 			System.out.println(currUser);
 			currUser = repo.findByID(currUser);
 			if (currUser.getUserID() != 0) {
@@ -67,33 +67,61 @@ public class MainController {
 	@GetMapping("/register")
 	public String registerForm(Model model) {
 		model.addAttribute("person", new Person());
+		model.addAttribute("user", new User());
 		return "register_form";
 	}
 
+	@PostMapping("/login")
+	public String loginForm(@ModelAttribute User user, Model model) {
+		User currUser = repo.findByID(user);
+		if (repo.isValidUser(user, currUser)) {
+			Person currentUserDetails = personrepo.getPerson(currUser.getUserID());
+			model.addAttribute("currentUserDetails", currentUserDetails);
+			model.addAttribute("personList", personrepo.getAllPersons(currentUserDetails));
+			return "home_page";
+		} else {
+			System.out.println("Login Failed");
+		}
+		return "login_form";
+	}
+
 	@PostMapping("/register")
-	public String submitForm(@ModelAttribute Person person, Model model) {
-		System.out.println("Register"+person);
+	public String submitForm(@ModelAttribute Person person, @ModelAttribute User user, Model model) {
+
+		User currUser = user;
+		try {
+			String newUserStatus = repo.addNewUser(currUser,person);
+			if("SUCCESS".equals(newUserStatus)){
+				
+			}
+			System.out.println(currUser);
+			currUser = repo.findByID(currUser);
+			if (currUser.getUserID() != 0) {
+
+			} else {
+			
+			}
+		} catch (DuplicateKeyException e) {
+			System.out.println("Failed - > User Already You have an Account");
+			System.out.println("User Id is :" + repo.findByID(currUser));
+		} catch (Exception e) {
+			System.out.println("Failed -> "+e );
+			System.out.println("Exception Occured" + e);
+		}
+		
+		
+		
+		
+		
+		
+		
+		
 		return "register_success";
 	}
 
 	@GetMapping("/login")
 	public String loginForm(Model model) {
-		model .addAttribute("user", new User());
-		return "login_form";
-	}
-
-	@PostMapping("/login")
-	public String loginForm(@ModelAttribute User user, Model model){
-		User currUser = repo.findByID(user);
-		if(repo.isValidUser(user,currUser)) {
-			Person currentUserDetails = personrepo.getPerson(currUser.getUserID());
-			model.addAttribute("currentUserDetails",currentUserDetails);
-		    model.addAttribute("personList",personrepo.getAllPersons(currentUserDetails));
-
-		    return "home_page";
-		}else {
-			System.out.println("Login Failed");
-		}
+		model.addAttribute("user", new User());
 		return "login_form";
 	}
 }

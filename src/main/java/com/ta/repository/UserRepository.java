@@ -5,13 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Repository;
 
+import com.ta.model.Person;
 import com.ta.model.User;
 
 
 @Configurable
 @Repository
 public interface UserRepository {
-	int addNewUser(User user);
+	String addNewUser(User user,Person person);
 
 	int updateUser(User user);
 

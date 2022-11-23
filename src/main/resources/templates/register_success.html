@@ -4,28 +4,36 @@
 <meta charset="ISO-8859-1">
 <title>Registration Success</title>
 <style type="text/css">
-    span {
-        display: inline-block;
-        width: 200px;
-        text-align: left;
-    }
+span {
+	display: inline-block;
+	width: 200px;
+	text-align: left;
+}
 </style>
 </head>
 <body>
 	<div align="center">
-	    <h2>Registration Succeeded!</h2>
-	    <span>Full name:</span><span th:text="${person.name}"></span><br/>
-	    <span>Age:</span><span th:text="${person.age}"></span><br/>
-	    <span>Gender:</span><span th:text="${person.gender}"></span><br/>
-	    <span>Mobile Number:</span><span th:text="${person.mobileNo}"></span><br/>
-	    <span>E-mail:</span><span th:text="${person.email}"></span><br/>
-	    <span>Father Name:</span><span th:text="${person.fatherName}"></span><br/>
-	    <span>Mother Name:</span><span th:text="${person.motherName}"></span><br/>
-		<span>Home Location:</span><span th:text="${person.homeLocation}"></span><br/>
-		<span>Job Type:</span><span th:text="${person.jobType}"></span><br/>
-		<span>salary</span><span th:text="${person.salary}"></span><br/>
-		<span>Work Location:</span><span th:text="${person.workLocation}"></span><br/>
-		<span>Education:</span><span th:text="${person.education}"></span><br/>	
+		<h2>Registration Succeeded!</h2>
+		<span>Full name:</span><span 
+			th:text="${person.name}"></span><br /> <span>Age:</span><span
+			th:text="${person.age}"></span><br /> <span>Gender:</span><span
+			th:text="${person.gender}"></span><br /> <span>Mobile Number:</span><span
+			th:text="${person.mobileNo}"></span><br /> <span>E-Mail:</span><span
+			th:text="${user.email}"></span><br /> <span>Password:</span><span
+			th:text="${user.password}"></span><br /> <span>Father Name:</span><span
+			th:text="${person.fatherName}"></span><br /> <span>Mother Name:</span><span
+			th:text="${person.motherName}"></span><br /> <span>Home Location:</span><span 
+			th:text="${person.homeLocation}"></span><br /> <span>Job Type:</span><span 
+			th:text="${person.jobType}"></span><br /> <span>salary</span><span
+			th:text="${person.salary}"></span><br /> <span>Work Location:</span><span
+			th:text="${person.workLocation}"></span><br /> <span>Education:</span><span
+			th:text="${person.education}"></span><br />
+
 	</div>
+	<div>
+		<h1>Spring Project</h1>
+		<a href="login">Login</a> <a href="Main">Main</a>
+	</div>
+
 </body>
 </html>
